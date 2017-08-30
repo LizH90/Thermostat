@@ -21,7 +21,7 @@ Thermostat.prototype.down = function(unit) {
   this.temperature -= unit;
 };
 
-Thermostat.prototype.reset = function(unit) {
+Thermostat.prototype.reset = function() {
   this.temperature = 20;
 };
 
