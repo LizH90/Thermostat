@@ -3,6 +3,8 @@ describe('Thermostat', function() {
 
   beforeEach(function() {
     thermostat = new Thermostat(20);
+    thermostat2 = new Thermostat(17);
+    thermostat3 = new Thermostat(32);
   });
 
 
@@ -34,9 +36,9 @@ describe('Thermostat', function() {
   });
 
   it('power saving mode is off and we remain below 32 degrees', function() {
-      thermostat.powersave = false;
-      thermostat.up(7);
-      expect(thermostat.temperature).toBe(27)
+    thermostat.powersave = false;
+    thermostat.up(7);
+    expect(thermostat.temperature).toBe(27)
   });
 
   it('resets the temperature to 20 degrees', function() {
@@ -44,8 +46,15 @@ describe('Thermostat', function() {
     expect(thermostat.temperature).toBe(20)
   });
 
-  it('checks the usage of the thermostat', function() {
-    thermostat.check(26);
-    expect(thermostat.usage).toBe('high-usage')
+  it('expects high usage', function() {
+    expect(thermostat3.usage()).toBe('high-usage')
+  });
+
+  it('expects low usage', function() {
+    expect(thermostat2.usage()).toBe('low-usage')
+  });
+
+  it('expects medium usage', function() {
+    expect(thermostat.usage()).toBe('medium-usage')
   });
 });

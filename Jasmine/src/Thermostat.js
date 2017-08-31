@@ -2,7 +2,6 @@ function Thermostat(temperature = 20) {
   this.temperature = temperature;
   this.MIN_TEMP = 10;
   this.powersave = true;
-  this.usage = 'medium-usage';
 };
 
 Thermostat.prototype.up = function(unit) {
@@ -25,15 +24,14 @@ Thermostat.prototype.reset = function() {
   this.temperature = 20;
 };
 
-Thermostat.prototype.check = function(temperature) {
-  switch(temperature) {
-    case temperature <18:
-        this.usage = 'low-usage';
-        break;
-    case temperature < 25:
-        this.usage = 'medium-usage'
-        break;
-    default:
-        this.usage = 'high-usage'
-}
+Thermostat.prototype.usage = function(temperature) {
+  if (this.temperature <18) {
+    return 'low-usage';
+  }
+  else if (this.temperature > 17 && this.temperature < 25) {
+    return 'medium-usage';
+  }
+  else {
+    return 'high-usage';
+  };
 };
